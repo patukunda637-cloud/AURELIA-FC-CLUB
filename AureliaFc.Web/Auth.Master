@@ -1,0 +1,32 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Auth.Master.cs" Inherits="AureliaFc.Web.AuthMaster" %>
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">Aurelia FC</asp:ContentPlaceHolder></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Content/site.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Content/pages.css") %>" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body class="auth-shell">
+    <form id="AuthForm" runat="server">
+        <div class="auth-shell__brand">
+            <a class="auth-shell__logo" href="<%= ResolveUrl("~/Default.aspx") %>">AURELIA FOOTBALL CLUB</a>
+        </div>
+
+        <main class="auth-shell__main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <footer class="auth-shell__footer">
+            <p>&copy; <%= DateTime.Now.Year %> Aurelia Football Club. All Rights Reserved.</p>
+            <p><a href="<%= ResolveUrl("~/Default.aspx") %>">Back to the club website</a></p>
+        </footer>
+    </form>
+</body>
+</html>

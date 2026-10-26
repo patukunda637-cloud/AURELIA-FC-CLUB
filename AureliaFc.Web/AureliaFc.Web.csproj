@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7C1E5B4A-9D3F-4E28-B6A1-5F0C8D2E4A17}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AureliaFc.Web</RootNamespace>
+    <AssemblyName>AureliaFc.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <LangVersion>7.3</LangVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <!-- Markup and static assets that IIS Express serves straight from the project folder. -->
+  <ItemGroup>
+    <Content Include="Content\**\*" />
+    <Content Include="assets\**\*" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="favicon.svg" />
+    <Content Include="Default.aspx" />
+    <Content Include="Site.Master" />
+    <Content Include="Auth.Master" />
+    <Content Include="Club\About.aspx" />
+    <Content Include="Club\Contact.aspx" />
+    <Content Include="Club\Gallery.aspx" />
+    <Content Include="Club\NotFound.aspx" />
+    <Content Include="Squad\Teams.aspx" />
+    <Content Include="Squad\Players.aspx" />
+    <Content Include="Squad\PlayerProfile.aspx" />
+    <Content Include="Matches\Matches.aspx" />
+    <Content Include="Matches\MatchDetail.aspx" />
+    <Content Include="Matches\LeagueTable.aspx" />
+    <Content Include="Shop\Shop.aspx" />
+    <Content Include="Shop\Tickets.aspx" />
+    <Content Include="News\News.aspx" />
+    <Content Include="News\Article.aspx" />
+    <Content Include="Account\SignIn.aspx" />
+    <Content Include="Account\SignUp.aspx" />
+    <Content Include="Account\Account.aspx" />
+    <Content Include="Account\SignOut.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AureliaPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DAL\AureliaDatabase.cs" />
+    <Compile Include="DAL\ClubRepository.cs" />
+    <Compile Include="DAL\CommerceRepository.cs" />
+    <Compile Include="DAL\ContentRepository.cs" />
+    <Compile Include="DAL\MatchRepository.cs" />
+    <Compile Include="DAL\OrderRepository.cs" />
+    <Compile Include="DAL\ReaderExtensions.cs" />
+    <Compile Include="DAL\SquadRepository.cs" />
+    <Compile Include="DAL\UserRepository.cs" />
+    <Compile Include="Global.asax.cs" />
+    <Compile Include="Models\CommerceModels.cs" />
+    <Compile Include="Models\ContentModels.cs" />
+    <Compile Include="Models\MatchModels.cs" />
+    <Compile Include="Models\OrderModels.cs" />
+    <Compile Include="Models\SquadModels.cs" />
+    <Compile Include="Models\UserModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\Formatting.cs" />
+    <Compile Include="Services\PasswordHasher.cs" />
+    <Compile Include="Services\ValidationService.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Auth.Master.cs">
+      <DependentUpon>Auth.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auth.Master.designer.cs">
+      <DependentUpon>Auth.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Club\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Club\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Club\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Club\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Club\Gallery.aspx.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Club\Gallery.aspx.designer.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Club\NotFound.aspx.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Club\NotFound.aspx.designer.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Squad\Teams.aspx.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Squad\Teams.aspx.designer.cs">
+      <DependentUpon>Teams.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Squad\Players.aspx.cs">
+      <DependentUpon>Players.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Squad\Players.aspx.designer.cs">
+      <DependentUpon>Players.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Squad\PlayerProfile.aspx.cs">
+      <DependentUpon>PlayerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Squad\PlayerProfile.aspx.designer.cs">
+      <DependentUpon>PlayerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Matches\Matches.aspx.cs">
+      <DependentUpon>Matches.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Matches\Matches.aspx.designer.cs">
+      <DependentUpon>Matches.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Matches\MatchDetail.aspx.cs">
+      <DependentUpon>MatchDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Matches\MatchDetail.aspx.designer.cs">
+      <DependentUpon>MatchDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Matches\LeagueTable.aspx.cs">
+      <DependentUpon>LeagueTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Matches\LeagueTable.aspx.designer.cs">
+      <DependentUpon>LeagueTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shop\Shop.aspx.cs">
+      <DependentUpon>Shop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shop\Shop.aspx.designer.cs">
+      <DependentUpon>Shop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shop\Tickets.aspx.cs">
+      <DependentUpon>Tickets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shop\Tickets.aspx.designer.cs">
+      <DependentUpon>Tickets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News\News.aspx.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News\News.aspx.designer.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News\Article.aspx.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News\Article.aspx.designer.cs">
+      <DependentUpon>Article.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SignOut.aspx.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SignOut.aspx.designer.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MySql.Data">
+      <Version>8.0.33</Version>
+    </PackageReference>
+    <PackageReference Include="BCrypt.Net-Next">
+      <Version>4.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
+      <Version>6.35.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <!--
+    Web Application targets. This must keep the same shape Visual Studio's own
+    Web Application template uses: $(VSToolsPath) is supplied by the IDE as a
+    global property, and the fallback below is what lets plain MSBuild.exe
+    resolve the same file from the command line.
+  -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5120</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:5120/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

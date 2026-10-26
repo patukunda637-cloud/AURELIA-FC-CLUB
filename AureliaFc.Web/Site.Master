@@ -1,0 +1,125 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="AureliaFc.Web.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">Aurelia FC</asp:ContentPlaceHolder></title>
+    <meta id="metaDescription" runat="server" name="description" content="Aurelia FC" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Content/site.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Content/pages.css") %>" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form id="MainForm" runat="server">
+        <a class="skip-link" href="#main-content">Skip to main content</a>
+
+        <%-- ============================ Header (88px) ============================ --%>
+        <header class="site-header">
+            <div class="site-header__inner container">
+                <a class="brand" href="<%= ResolveUrl("~/Default.aspx") %>" aria-label="Aurelia FC home">
+                    <span class="brand__name">AURELIA FC</span>
+                    <span class="brand__est">EST. 1987</span>
+                </a>
+
+                <a class="site-header__toggle" href="#primary-navigation" aria-label="Open navigation menu">&#9776;</a>
+
+                <nav id="primary-navigation" class="site-nav" aria-label="Primary">
+                    <asp:Repeater ID="NavRepeater" runat="server">
+                        <ItemTemplate>
+                            <a class="site-nav__link<%# (bool)Eval("IsActive") ? " site-nav__link--active" : string.Empty %>"
+                               href="<%# ResolveUrl((string)Eval("Href")) %>"><%# Eval("Label") %></a>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                    <div class="site-nav__actions">
+                        <a class="site-nav__cart" href="<%= ResolveUrl("~/Shop/Shop.aspx") %>"
+                           aria-label="Cart">Cart<% if (CartCount > 0) { %> (<%= CartCount %>)<% } %></a>
+
+                        <% if (CurrentUser != null) { %>
+                            <a class="site-nav__link" href="<%= ResolveUrl("~/Account/Account.aspx") %>"><%= Server.HtmlEncode(CurrentUser.FirstName) %></a>
+                            <a class="site-nav__link site-nav__signout" href="<%= ResolveUrl("~/Account/SignOut.aspx") %>">Sign Out</a>
+                        <% } else { %>
+                            <a class="site-nav__link" href="<%= ResolveUrl("~/Account/SignIn.aspx") %>">Sign In</a>
+                        <% } %>
+
+                        <a class="btn btn--primary site-nav__cta" href="<%= ResolveUrl("~/Shop/Tickets.aspx") %>">GET TICKETS</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <%-- ============================ Page content ============================ --%>
+        <main id="main-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <%-- ============================ Partners strip ============================ --%>
+        <% if (ShowPartners) { %>
+        <section class="partners">
+            <div class="container">
+                <p class="eyebrow center">Official Partners</p>
+                <div class="partners__grid">
+                    <asp:Repeater ID="PartnerRepeater" runat="server">
+                        <ItemTemplate>
+                            <span class="partners__name"><%# Eval("Name") %></span>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+        </section>
+        <% } %>
+
+        <%-- ============================ Footer ============================ --%>
+        <footer class="site-footer">
+            <div class="container">
+                <div class="site-footer__grid">
+                    <div class="site-footer__col site-footer__col--brand">
+                        <h4 class="site-footer__title"><%= Server.HtmlEncode(ClubName) %></h4>
+                        <p class="site-footer__motto">&ldquo;<%= Server.HtmlEncode(Motto) %>&rdquo;</p>
+                        <p class="site-footer__body"><%= Server.HtmlEncode(ClubDescription) %></p>
+                    </div>
+
+                    <div class="site-footer__col">
+                        <h4 class="site-footer__title"><%= Server.HtmlEncode(StadiumName.ToUpperInvariant()) %></h4>
+                        <address class="site-footer__address">
+                            <span>Capacity: <%= AureliaFc.Web.Services.Formatting.Number(Capacity) %> Seats</span>
+                            <span>Built: <%= BuiltYear %></span>
+                            <span>Address: <%= Server.HtmlEncode(Address) %></span>
+                        </address>
+                    </div>
+
+                    <div class="site-footer__col">
+                        <h4 class="site-footer__title">QUICK LINKS</h4>
+                        <ul class="site-footer__links">
+                            <asp:Repeater ID="QuickLinkRepeater" runat="server">
+                                <ItemTemplate>
+                                    <li><a href="<%# ResolveUrl((string)Eval("Href")) %>"><%# Eval("Label") %></a></li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+                    </div>
+
+                    <div class="site-footer__col">
+                        <h4 class="site-footer__title">GET IN TOUCH</h4>
+                        <address class="site-footer__address">
+                            <span><%= Server.HtmlEncode(Address) %></span>
+                            <span><%= Server.HtmlEncode(Phone) %></span>
+                            <span><a href="mailto:hello@aureliafc.com">hello@aureliafc.com</a></span>
+                        </address>
+                    </div>
+                </div>
+
+                <div class="site-footer__bar">
+                    <p>&copy; <%= DateTime.Now.Year %> Aurelia Football Club. All Rights Reserved.</p>
+                    <p>Designed for Premium Performance.</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
